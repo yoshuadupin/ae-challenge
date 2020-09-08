@@ -1,6 +1,5 @@
-const Page = require('./page');
 
-class ParkingPage extends Page {
+module.exports =class ParkingPage   {
 
     get comboBoxParkingLot() { return $('[name="ParkingLot"]') }
 
