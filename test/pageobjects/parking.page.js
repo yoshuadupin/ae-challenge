@@ -10,16 +10,16 @@ class ParkingPage extends Page {
     get inputStartingTime() { return  $('[name="StartingTime"]')}
     get inputLeavingTime() { return  $('[name="LeavingTime"]')}
     
-    get radioButoomStartingAM() { return  $('[name="StartingTimeAMPM"]').$('[value="AM"]')}
-    get radioButtomStartingPM() { return  $('[name="StartingTimeAMPM"]').$('[value="PM"]')}
+    get radioButtonStartingAM() { return  $('[name="StartingTimeAMPM"]').$('[value="AM"]')}
+    get radioButtonStartingPM() { return  $('[name="StartingTimeAMPM"]').$('[value="PM"]')}
     
-    get radioButoomLeavingAM() { return  $('[name="LeavingTimeAMPM"]').$('[value="AM"]')}
-    get radioButtomLeavingPM() { return  $('[name="LeavingTimeAMPM"]').$('[value="PM"]')}
+    get radiButtonLeavingAM() { return  $('[name="LeavingTimeAMPM"]').$('[value="AM"]')}
+    get radioButtonLeavingPM() { return  $('[name="LeavingTimeAMPM"]').$('[value="PM"]')}
 
     get estimatedParkingCost(){return $('//body/form/table/tbody/tr[4]/td[2]/span[1]/b')}
     get estimatedParkingTime(){return $('//body/form/table/tbody/tr[4]/td[2]/span[2]/b')}
 
-    
+    get buttonCalculate(){return $('input[name=Calculte]')}
 
     open() {
         return browser.url(`http://www.shino.de/parkcalc/`)
