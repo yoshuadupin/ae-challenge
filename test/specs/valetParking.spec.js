@@ -14,7 +14,7 @@ describe('Valet Parking Test', () => {
     })
     // DONE
     //TODO: test de debe mantenerse en el mismo estado  
-    !it('should calculate cost of less five hour Valet Parking', () => {
+    xit('should calculate cost of less five hour Valet Parking', () => {
         const inputStartHour = 10;
         const expectCost = "$ 12.00";
 
@@ -36,7 +36,7 @@ describe('Valet Parking Test', () => {
             expect(ParkingPage.estimatedParkingCost()).toBeDisplayed();
             expect(ParkingPage.estimatedParkingTime()).toBeDisplayed();
             const actualCost = ParkingPage.estimatedParkingCost().getText();
-            
+
             expect(actualCost).toEqual(expectCost);
         }
 
@@ -64,14 +64,14 @@ describe('Valet Parking Test', () => {
     });
 
     it('should calculate time of less five hour Valet Parking', () => {
-        const expectDateStart = new Date(2020, 9, 10, 6, 30 , 0);
-        const expectDateLeave = new Date(2020, 9, 10, 10, 0 , 0);
+        const expectDateStart = new Date(2020, 9, 10, 6, 30, 0);
+        const expectDateLeave = new Date(2020, 9, 10, 10, 0, 0);
 
         ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
         ParkingPage.inputStartingDate().setValue('10/9/2020');
         ParkingPage.inputLeavingDate().setValue('10/9/2020');
 
-        ParkingPage.radioButtonLeavingAM().click(); 
+        ParkingPage.radioButtonLeavingAM().click();
         ParkingPage.radioButtonStartingAM().click();
 
         ParkingPage.inputStartingTime().setValue(`6:30`);
@@ -82,19 +82,20 @@ describe('Valet Parking Test', () => {
         const actualTime = ParkingPage.estimatedParkingTime().getText();
         console.log(actualTime.match(/\d+/g));
 
-        const actualDay  = actualTime[0];
+        const actualDay = actualTime[0];
         const actualHour = actualTime[1]
         const actualMin = actualTime[2]
         
-        const expectDay = expectDateLeave.getDay() - expectDateStart.getDay();
-        const expectHour =  expectDateLeave.getHours() - expectDateStart.getHours();
-        const expectMin =  expectDateLeave.getMinutes() - expectDateStart.getMinutes();
+        //const expectDay = expectDateLeave.getDay() - expectDateStart.getDay();
+        const expectHour = expectDateLeave.getHours() - expectDateStart.getHours();
+        const expectMin = expectDateLeave.getMinutes() - expectDateStart.getMinutes();
 
-        expect(actualDay).toEqual(expectDay);
-        expect(actualHour).toEqual(expectHour);
-        expect(actualMin).toEqual(expectMin);
 
-       
+        //expect(`${expectDay}`).toEqual(actualDay);
+        expect(`${expectHour}`).toEqual(actualHour);
+        expect(`${expectMin}`).toEqual(actualMin);
+
+
 
     });
 
