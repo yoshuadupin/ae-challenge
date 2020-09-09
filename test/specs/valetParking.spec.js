@@ -1,4 +1,5 @@
 const ParkingPage = require('../pageobjects/parking.page');
+const { start } = require('chromedriver');
 const parkingLot = {
     VALETPARKING: 1
     , SHORTTERM: 2
@@ -6,9 +7,6 @@ const parkingLot = {
     , LONGTEMGARAGE: 4
     , LONGTEMSURFAC: 5
 };
-let calculateDays =(startDate , endDate)=> {
-    return startDate.getDay() - endDate.getDay();
-}
 
 describe('Valet Parking Test', () => {
     before(() => {
@@ -68,11 +66,26 @@ describe('Valet Parking Test', () => {
     });
 
     it('should calculate time of less five hour Valet Parking', () => {
+        const expectDateStart = new Date(2020, 9, 10, 6, 30 , 0);
+        const expectDateLeave = new Date(2020, 9, 10, 4, 0 , 0);
+
         ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
         ParkingPage.inputStartingDate().setValue('9/9/2020');
         ParkingPage.inputLeavingDate().setValue('9/9/2020');
 
-       
+        ParkingPage.radioButtonLeavingAM().click();
+        ParkingPage.radioButtonStartingAM().click();
+
+        ParkingPage.inputStartingTime().setValue(`6:30`);
+        ParkingPage.inputLeavingTime().setValue(`4:00`);
+
+        ParkingPage.radioButtonStartingAM().click();
+        ParkingPage.radioButtonLeavingAM().click();
+
+
+
+
+
 
     });
 
