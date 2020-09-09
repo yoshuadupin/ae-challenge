@@ -66,6 +66,7 @@ describe('Valet Parking Test', () => {
     it('should calculate time of less five hour Valet Parking', () => {
         const expectDateStart = new Date(2020, 9, 10, 6, 30, 0);
         const expectDateLeave = new Date(2020, 9, 10, 10, 0, 0);
+        const expectTimeInMinutes = (expectDateLeave - expectDateStart) / (1000 * 60);
 
         ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
         ParkingPage.inputStartingDate().setValue('10/9/2020');
@@ -85,15 +86,17 @@ describe('Valet Parking Test', () => {
         const actualDay = actualTime[0];
         const actualHour = actualTime[1]
         const actualMin = actualTime[2]
-        
-        //const expectDay = expectDateLeave.getDay() - expectDateStart.getDay();
-        const expectHour = expectDateLeave.getHours() - expectDateStart.getHours();
-        const expectMin = expectDateLeave.getMinutes() - expectDateStart.getMinutes();
 
+        const expectDay = Math.floor(expectTimeInMinutes / (60 * 24));
+        const expectHour = Math.floor(expectTimeInMinutes / 60);
 
-        //expect(`${expectDay}`).toEqual(actualDay);
+        //console.log(expectDay)
+        //console.log(expectHour)
+        //console.log(expectTimeInMinutes % 60)
+
+        expect(`${expectDay}`).toEqual(actualDay);
         expect(`${expectHour}`).toEqual(actualHour);
-        expect(`${expectMin}`).toEqual(actualMin);
+        expect(`${expectTimeInMinutes}`).toEqual(actualMin);
 
 
 
