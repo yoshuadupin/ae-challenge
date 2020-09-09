@@ -8,7 +8,8 @@ describe('Basic elements interact', () => {
     })
 
     it('should allow interact with the elements', () => {
-
+        const optionParkingRate = ParkingPage.comboBoxParkingLot().$('option').getText();
+        console.log(optionParkingRate)
 
     });
 });

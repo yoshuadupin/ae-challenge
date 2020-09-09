@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:test":"eslint test/"
+    "lint:test":"eslint test/",
+    "spec": "npx wdio wdio.conf.js --spec=$npm_config_spec",
+    "specAll": "npx wdio wdio.conf.js"
+
   },
   "keywords": [],
   "author": "",
