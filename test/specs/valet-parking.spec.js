@@ -10,7 +10,7 @@ describe('Valet Parking Functional Tests', () => {
     it('should calculate cost of less five hour Valet Parking', () => {
         const inputStartHour = 10;
         const expectCost = "$ 12.00";
-
+        
         ParkingPage.comboBoxParkingLot().$(`//option[${valetParking}]`).click();
         ParkingPage.inputStartingDate().setValue('9/9/2020');
         ParkingPage.inputLeavingDate().setValue('9/9/2020');
