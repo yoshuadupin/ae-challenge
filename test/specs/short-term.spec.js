@@ -51,6 +51,7 @@ describe('Short-Term Functional Tests', () => {
 
     it('should calculate daily maximun parking', () => {
         const startDay = 9;
+        const dailyMax =24;
         const actualCost = ParkingPage.estimatedParkingCost();
         const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${shortTerm}]`);
 
@@ -67,7 +68,7 @@ describe('Short-Term Functional Tests', () => {
             parkingLot.click();
             ParkingPage.inputLeavingDate().setValue(`9/${startDay + i}/2020`);
             ParkingPage.buttonCalculate().click();
-            expect(actualCost.getText()).toEqual(`$ ${24 * i}.00`);
+            expect(actualCost.getText()).toEqual(`$ ${dailyMax * i}.00`);
         }
     });
 })
