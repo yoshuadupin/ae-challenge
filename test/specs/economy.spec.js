@@ -36,7 +36,7 @@ describe('Economy Functional Tests', () => {
         }
     });
 
-    it('should calculate per day parking ', () => {
+    xit('should calculate per day parking ', () => {
         const startDay = 9;
         const dailyMax = 9;
         const actualCost = ParkingPage.estimatedParkingCost();
@@ -53,13 +53,12 @@ describe('Economy Functional Tests', () => {
             ParkingPage.inputLeavingDate().setValue(`9/${startDay + i}/2020`);
             ParkingPage.buttonCalculate().click();
             expect(actualCost.getText()).toEqual(`$ ${dailyMax * i}.00`);
-            browser.pause(2000)
         }
     });
 
-    xit('should calculate per week parking ', () => {
+    it('should calculate per week parking ', () => {
         const startDay = 0;
-        const weekCost = 72;
+        const weekCost = 54;
         const actualCost = ParkingPage.estimatedParkingCost();
         const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${economy}]`);
 

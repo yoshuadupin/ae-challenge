@@ -53,7 +53,6 @@ describe('Long-Term Surfaces Functional Tests', () => {
             ParkingPage.inputLeavingDate().setValue(`9/${startDay + i}/2020`);
             ParkingPage.buttonCalculate().click();
             expect(actualCost.getText()).toEqual(`$ ${dailyMax * i}.00`);
-            browser.pause(2000)
         }
     });
 
