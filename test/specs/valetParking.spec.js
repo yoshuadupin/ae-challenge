@@ -1,5 +1,5 @@
 const ParkingPage = require('../pageobjects/parking.page');
-const { start } = require('chromedriver');
+const chai =  require('chai')
 const parkingLot = {
     VALETPARKING: 1
     , SHORTTERM: 2
@@ -67,7 +67,7 @@ describe('Valet Parking Test', () => {
         const expectDateStart = new Date(2020, 9, 10, 6, 30, 0);
         const expectDateLeave = new Date(2020, 9, 10, 10, 0, 0);
         const expectTimeInMinutes = (expectDateLeave - expectDateStart) / (1000 * 60);
-
+       
         ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
         ParkingPage.inputStartingDate().setValue('10/9/2020');
         ParkingPage.inputLeavingDate().setValue('10/9/2020');
@@ -79,26 +79,21 @@ describe('Valet Parking Test', () => {
         ParkingPage.inputLeavingTime().setValue(`10:00`);
 
         ParkingPage.buttonCalculate().click();
-
-        const actualTime = ParkingPage.estimatedParkingTime().getText();
-        console.log(actualTime.match(/\d+/g));
+        
+        const actualTime = ParkingPage.estimatedParkingTime().getText().match(/\d+/g);
 
         const actualDay = actualTime[0];
-        const actualHour = actualTime[1]
-        const actualMin = actualTime[2]
+        const actualHour = actualTime[1];
+        const actualMin = actualTime[2];
 
-        const expectDay = Math.floor(expectTimeInMinutes / (60 * 24));
+
+        const expectDay =  Math.floor(expectTimeInMinutes / (60 * 24));
         const expectHour = Math.floor(expectTimeInMinutes / 60);
+        const expectMin  = expectTimeInMinutes % 60;
 
-        //console.log(expectDay)
-        //console.log(expectHour)
-        //console.log(expectTimeInMinutes % 60)
-
-        expect(`${expectDay}`).toEqual(actualDay);
-        expect(`${expectHour}`).toEqual(actualHour);
-        expect(`${expectTimeInMinutes}`).toEqual(actualMin);
-
-
+        expect(actualDay).toEqual(expectDay.toString());
+        expect(actualHour).toEqual(expectHour.toString());
+        expect(actualMin).toEqual(expectMin.toString());
 
     });
 
