@@ -9,6 +9,7 @@ describe('Long-Term Functional Tests' , ()=>{
 
     it('should calculate per hour parking ' , ()=>{
         const startHour = 0;
+        const dailyMax = 12;
         const actualCost = ParkingPage.estimatedParkingCost();
         const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${longTermGarage}]`);
 
@@ -20,12 +21,18 @@ describe('Long-Term Functional Tests' , ()=>{
         //Revisa solo hasta 12 horas por que ese el
         // daily maximun que se maneja en la pagina pero no lo dice
         for (let i = 1; i < 12; i ++) {
+            const expectedCost = 2*i;
+
             parkingLot.click();
             ParkingPage.inputLeavingTime().setValue(`${startHour+i}:00`);
             ParkingPage.radioButtonLeavingAM().click();
             ParkingPage.buttonCalculate().click();
-            expect(actualCost.getText()).toEqual(`$ ${2 * i}.00`);
-            browser.pause(2000);
+
+            if(expectedCost <= dailyMax){
+                expect(actualCost.getText()).toEqual(`$ ${expectedCost}.00`);
+            }else{
+                expect(actualCost.getText()).toEqual(`$ 12.00`);
+            }
         }
     });
 })

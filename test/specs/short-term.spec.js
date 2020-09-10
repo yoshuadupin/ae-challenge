@@ -7,6 +7,7 @@ describe('Short-Term Functional Tests', () => {
 
     it('should calculate per hour parking', () => {
         const startHour = 0;
+        const dailyMax = 24;
         const actualCost = ParkingPage.estimatedParkingCost();
         const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${shortTerm}]`);
 
@@ -23,7 +24,7 @@ describe('Short-Term Functional Tests', () => {
         //Revisa solo hasta 12 horas por que ese el
         // daily maximun que se maneja en la pagina pero no lo dice
         let acumulateCost = 0;
-        for (let i = 1; i < 12; i += 0.5) {
+        for (let i = 1; i < 24; i += 0.5) {
             const hours = Math.floor(startHour + i) % 12;
             const mins = (60 * i) % 60;
 
@@ -37,7 +38,13 @@ describe('Short-Term Functional Tests', () => {
             }
 
             ParkingPage.buttonCalculate().click();
-            expect(actualCost.getText()).toEqual(`$ ${2 + acumulateCost}.00`);
+            const expectedCost = 2 + acumulateCost;
+
+            if (expectedCost < dailyMax) {
+                expect(actualCost.getText()).toEqual(`$ ${expectedCost}.00`);
+            } else {
+                expect(actualCost.getText()).toEqual(`$ 24.00`);
+            }
             acumulateCost += 1;
         }
     });
