@@ -3,7 +3,7 @@ const parkingLot = {
     , SHORTTERM: 2
     , ECONOMY: 3
     , LONGTEMGARAGE: 4
-    , LONGTEMSURFACe: 5
+    , LONGTEMSURFACE: 5
 };
 
 module.exports = parkingLot;
