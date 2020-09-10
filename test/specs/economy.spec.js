@@ -1,17 +1,17 @@
 const ParkingPage = require('../pageobjects/parking.page');
-const longTermSurface = require('../utilities').LONGTEMSURFACE;
+const economy = require('../utilities').ECONOMY;
 
 
-describe('Long-Term Surfaces Functional Tests', () => {
+describe('Economy Functional Tests', () => {
     before(() => {
         ParkingPage.open();
     })
 
-    it('should calculate per hour parking ', () => {
+    xit('should calculate per hour parking ', () => {
         const startHour = 0;
-        const dailyMax = 10;
+        const dailyMax = 9;
         const actualCost = ParkingPage.estimatedParkingCost();
-        const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${longTermSurface}]`);
+        const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${economy}]`);
 
         ParkingPage.inputStartingDate().setValue("9/9/2020");
         ParkingPage.inputLeavingDate().setValue("9/9/2020");
@@ -38,9 +38,9 @@ describe('Long-Term Surfaces Functional Tests', () => {
 
     it('should calculate per day parking ', () => {
         const startDay = 9;
-        const dailyMax = 10;
+        const dailyMax = 9;
         const actualCost = ParkingPage.estimatedParkingCost();
-        const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${longTermSurface}]`);
+        const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${economy}]`);
 
         ParkingPage.inputStartingDate().setValue(`9/${startDay}/2020`);
         ParkingPage.radioButtonLeavingAM().click();
@@ -57,11 +57,11 @@ describe('Long-Term Surfaces Functional Tests', () => {
         }
     });
 
-    it('should calculate per week parking ', () => {
+    xit('should calculate per week parking ', () => {
         const startDay = 0;
-        const weekCost = 60;
+        const weekCost = 72;
         const actualCost = ParkingPage.estimatedParkingCost();
-        const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${longTermSurface}]`);
+        const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${economy}]`);
 
         ParkingPage.inputStartingDate().setValue(`9/${startDay}/2020`);
         ParkingPage.radioButtonLeavingAM().click();

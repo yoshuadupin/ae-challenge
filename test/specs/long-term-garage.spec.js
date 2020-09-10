@@ -31,7 +31,7 @@ describe('Long-Term Functional Tests', () => {
             if (expectedCost <= dailyMax) {
                 expect(actualCost.getText()).toEqual(`$ ${expectedCost}.00`);
             } else {
-                expect(actualCost.getText()).toEqual(`$ 12.00`);
+                expect(actualCost.getText()).toEqual(`$ ${dailyMax}.00`);
             }
         }
     });
