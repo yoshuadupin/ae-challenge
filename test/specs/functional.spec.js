@@ -15,21 +15,14 @@ describe('Basic elements interact', () => {
         ParkingPage.inputStartingDate().setValue('9/9/2020');
         ParkingPage.inputStartingTime().setValue('10:00');
         ParkingPage.radioButtonStartingPM().click()
-        browser.pause(1000);
         ParkingPage.radioButtonStartingAM().click();
-        browser.pause(1000);
         ParkingPage.inputLeavingDate().setValue('9/9/2020');
         ParkingPage.inputLeavingTime().setValue('11:00');
         ParkingPage.radioButtonLeavingPM().click()
-        browser.pause(1000);
         ParkingPage.radioButtonLeavingAM().click();
-        browser.pause(1000);
         ParkingPage.buttonCalculate().click();
-        browser.pause(3000);
         expect(ParkingPage.estimatedParkingCost()).toBeDisplayed();
         expect(ParkingPage.estimatedParkingTime()).toBeDisplayed();
-        browser.deleteCookies();
-        browser.pause(2000);
     });
 
 });
