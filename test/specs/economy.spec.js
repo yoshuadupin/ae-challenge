@@ -7,7 +7,7 @@ describe('Economy Functional Tests', () => {
         ParkingPage.open();
     })
 
-    xit('should calculate per hour parking ', () => {
+    it('should calculate per hour parking ', () => {
         const startHour = 0;
         const dailyMax = 9;
         const actualCost = ParkingPage.estimatedParkingCost();
@@ -36,7 +36,7 @@ describe('Economy Functional Tests', () => {
         }
     });
 
-    xit('should calculate per day parking ', () => {
+    it('should calculate per day parking ', () => {
         const startDay = 9;
         const dailyMax = 9;
         const actualCost = ParkingPage.estimatedParkingCost();
