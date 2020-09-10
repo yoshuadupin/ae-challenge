@@ -21,7 +21,7 @@ describe('Short-Term Functional Tests', () => {
         expect(actualCost.getText()).toEqual("$ 2.00");
         //Ciclo para calcular una hora
         let acumulateCost = 0;
-        for (let i = 1; i < 23.5; i += 0.5) {
+        for (let i = 1; i < 12; i += 0.5) {
             const hours = Math.floor(startHour + i) % 12;
             const mins = (60 * i) % 60;
             parkingLot.click();
