@@ -40,7 +40,7 @@ describe('Short-Term Functional Tests', () => {
             expect(actualCost.getText()).toEqual(`$ ${2 + acumulateCost}.00`);
             acumulateCost += 1;
         }
-    })
+    });
 
     it('should calculate daily maximun parking', () => {
         const startDay = 9;
@@ -62,5 +62,5 @@ describe('Short-Term Functional Tests', () => {
             ParkingPage.buttonCalculate().click();
             expect(actualCost.getText()).toEqual(`$ ${24 * i}.00`);
         }
-    })
+    });
 })
