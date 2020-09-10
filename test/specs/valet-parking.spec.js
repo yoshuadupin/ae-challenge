@@ -1,24 +1,17 @@
 const ParkingPage = require('../pageobjects/parking.page');
-const chai = require('chai')
-const parkingLot = {
-    VALETPARKING: 1
-    , SHORTTERM: 2
-    , ECONOMY: 3
-    , LONGTEMGARAGE: 4
-    , LONGTEMSURFAC: 5
-};
+const valetParking =require('../utilities').VALETPARKING;
 
-describe('valet parking Tests', () => {
+describe('Valet Parking Functional Tests', () => {
     before(() => {
         ParkingPage.open();
     })
     // DONE
     //TODO: test de debe mantenerse en el mismo estado 
-    xit('should calculate cost of less five hour Valet Parking', () => {
+    it('should calculate cost of less five hour Valet Parking', () => {
         const inputStartHour = 10;
         const expectCost = "$ 12.00";
 
-        ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
+        ParkingPage.comboBoxParkingLot().$(`//option[${valetParking}]`).click();
         ParkingPage.inputStartingDate().setValue('9/9/2020');
         ParkingPage.inputLeavingDate().setValue('9/9/2020');
 
@@ -66,7 +59,7 @@ describe('valet parking Tests', () => {
     it('should calculate cost per day valet parking', () => {
         const inputStartDay = 9;
 
-        ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
+        ParkingPage.comboBoxParkingLot().$(`//option[${valetParking}]`).click();
         ParkingPage.inputStartingDate().setValue(`9/${inputStartDay}/2020`);
         ParkingPage.inputLeavingDate().setValue(`9/${inputStartDay}/2020`);
         ParkingPage.inputStartingTime().setValue(`1:00`);
@@ -87,11 +80,11 @@ describe('valet parking Tests', () => {
         }
     });
 
-    xit('should calculate time of  valet parking', () => {
+    it('should calculate time of  valet parking', () => {
         const expectDateStart = new Date(2020, 9, 10, 6, 30, 0);
         const expectDateLeave = new Date(2020, 9, 10, 10, 0, 0);
 
-        ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
+        ParkingPage.comboBoxParkingLot().$(`//option[${valetParking}]`).click();
         ParkingPage.inputStartingDate().setValue('10/9/2020');
         ParkingPage.inputLeavingDate().setValue('10/9/2020');
         ParkingPage.radioButtonLeavingAM().click();
