@@ -1,12 +1,11 @@
 const ParkingPage = require('../pageobjects/parking.page');
 const valetParking = require('../utilities').VALETPARKING;
 
-describe('Basic elements interact', () => {
+describe('Error tests', () => {
     beforeEach(() => {
         ParkingPage.open();
     })
-    // DONE
-    it('should throw an error if the start time is lower than leave time', () => {
+    it('should throw an error if the start time is greater than leave time', () => {
         ParkingPage.comboBoxParkingLot().$(`//option[${valetParking}]`).click();
         ParkingPage.inputStartingDate().setValue('9/9/2020');
         ParkingPage.inputStartingTime().setValue('10:00');

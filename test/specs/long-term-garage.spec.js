@@ -16,10 +16,8 @@ describe('Long-Term Functional Tests', () => {
         ParkingPage.inputStartingDate().setValue("9/9/2020");
         ParkingPage.inputLeavingDate().setValue("9/9/2020");
         ParkingPage.radioButtonStartingAM().click();
-        ParkingPage.inputStartingTime().setValue(`${startHour}:00`);
-        //Ciclo para calcular una hora
-        //Revisa solo hasta 12 horas por que ese el
-        // daily maximun que se maneja en la pagina pero no lo dice
+        ParkingPage.inputStartingTime().setValue(`${startHour}:00`)
+        
         for (let i = 1; i < 12; i++) {
             const expectedCost = 2 * i;
 

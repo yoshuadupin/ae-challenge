@@ -1,7 +1,6 @@
 
 class ParkingPage {
    
-
      comboBoxParkingLot() { return $('[name="ParkingLot"]') }
 
      inputStartingDate() { return $('[name="StartingDate"]') }

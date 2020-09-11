@@ -23,7 +23,7 @@ describe('Short-Term Functional Tests', () => {
 
         let acumulateCost = 0;
         //loop in every half an hour 
-        for (let i = 1; i < 24; i += 0.5) {
+        for (let i = 1; i < 12; i += 0.5) {
             const hours = Math.floor(startHour + i) % 12;
             const mins = (60 * i) % 60;
             const expectedCost = 2 + acumulateCost;

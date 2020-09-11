@@ -1,7 +1,6 @@
 const ParkingPage = require('../pageobjects/parking.page');
 const economy = require('../utilities').ECONOMY;
 
-
 describe('Economy Functional Tests', () => {
     before(() => {
         ParkingPage.open();
@@ -17,9 +16,7 @@ describe('Economy Functional Tests', () => {
         ParkingPage.inputLeavingDate().setValue("9/9/2020");
         ParkingPage.radioButtonStartingAM().click();
         ParkingPage.inputStartingTime().setValue(`${startHour}:00`);
-        //Ciclo para calcular una hora
-        //Revisa solo hasta 12 horas por que ese el
-        // daily maximun que se maneja en la pagina pero no lo dice
+
         for (let i = 1; i < 12; i++) {
             const expectedCost = 2 * i;
 
@@ -69,7 +66,7 @@ describe('Economy Functional Tests', () => {
         ParkingPage.inputLeavingTime().setValue(`12:00`);
 
         for (let i = 1; i <= 3; i++) {
-            const nextWeek = startDay+7*i;
+            const nextWeek = startDay + 7 * i;
             parkingLot.click();
             ParkingPage.inputLeavingDate().setValue(`9/${nextWeek}/2020`);
             ParkingPage.buttonCalculate().click();
