@@ -20,13 +20,13 @@ describe('Short-Term Functional Tests', () => {
         ParkingPage.inputLeavingTime().setValue(`${startHour + 1}:00`);
         ParkingPage.buttonCalculate().click();
         expect(actualCost.getText()).toEqual("$ 2.00");
-        //Ciclo para calcular una hora
-        //Revisa solo hasta 12 horas por que ese el
-        // daily maximun que se maneja en la pagina pero no lo dice
+
         let acumulateCost = 0;
+        //loop in every half an hour 
         for (let i = 1; i < 24; i += 0.5) {
             const hours = Math.floor(startHour + i) % 12;
             const mins = (60 * i) % 60;
+            const expectedCost = 2 + acumulateCost;
 
             parkingLot.click();
 
@@ -38,7 +38,6 @@ describe('Short-Term Functional Tests', () => {
             }
 
             ParkingPage.buttonCalculate().click();
-            const expectedCost = 2 + acumulateCost;
 
             if (expectedCost < dailyMax) {
                 expect(actualCost.getText()).toEqual(`$ ${expectedCost}.00`);
@@ -51,7 +50,7 @@ describe('Short-Term Functional Tests', () => {
 
     it('should calculate daily maximun parking', () => {
         const startDay = 9;
-        const dailyMax =24;
+        const dailyMax = 24;
         const actualCost = ParkingPage.estimatedParkingCost();
         const parkingLot = ParkingPage.comboBoxParkingLot().$(`//option[${shortTerm}]`);
 

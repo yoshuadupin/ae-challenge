@@ -5,9 +5,8 @@ describe('Valet Parking Functional Tests', () => {
     before(() => {
         ParkingPage.open();
     })
-    // DONE
-    //TODO: test de debe mantenerse en el mismo estado 
-    it('should calculate cost of less five hour Valet Parking', () => {
+
+    it('should calculate cost of less five hour', () => {
         const inputStartHour = 10;
         const expectCost = "$ 12.00";
         
@@ -56,7 +55,7 @@ describe('Valet Parking Functional Tests', () => {
 
     });
 
-    it('should calculate cost per day valet parking', () => {
+    it('should calculate cost per day', () => {
         const inputStartDay = 9;
 
         ParkingPage.comboBoxParkingLot().$(`//option[${valetParking}]`).click();
@@ -80,10 +79,15 @@ describe('Valet Parking Functional Tests', () => {
         }
     });
 
-    it('should calculate time of  valet parking', () => {
+    it('should calculate time correctly', () => {
         const expectDateStart = new Date(2020, 9, 10, 6, 30, 0);
         const expectDateLeave = new Date(2020, 9, 10, 10, 0, 0);
-
+       
+        const expectTimeInMinutes = (expectDateLeave - expectDateStart) / (1000 * 60);
+        const expectDay = Math.floor(expectTimeInMinutes / (60 * 24));
+        const expectHour = Math.floor(expectTimeInMinutes / 60);
+        const expectMin = expectTimeInMinutes % 60;
+        
         ParkingPage.comboBoxParkingLot().$(`//option[${valetParking}]`).click();
         ParkingPage.inputStartingDate().setValue('10/9/2020');
         ParkingPage.inputLeavingDate().setValue('10/9/2020');
@@ -97,11 +101,6 @@ describe('Valet Parking Functional Tests', () => {
         const actualDay = actualTime[0];
         const actualHour = actualTime[1];
         const actualMin = actualTime[2];
-
-        const expectTimeInMinutes = (expectDateLeave - expectDateStart) / (1000 * 60);
-        const expectDay = Math.floor(expectTimeInMinutes / (60 * 24));
-        const expectHour = Math.floor(expectTimeInMinutes / 60);
-        const expectMin = expectTimeInMinutes % 60;
 
         expect(actualDay).toEqual(expectDay.toString());
         expect(actualHour).toEqual(expectHour.toString());
