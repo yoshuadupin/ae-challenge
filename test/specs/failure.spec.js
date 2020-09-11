@@ -45,12 +45,23 @@ describe('Basic elements interact', () => {
         ParkingPage.buttonCalculate().click();
         expect(ParkingPage.errorMessage()).toBeDisplayed();
     });
-    it('should throw an error with a incorrect date', () => {
+    xit('should throw an error with a incorrect date', () => {
         ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
-        ParkingPage.inputStartingDate().setValue('14/10/2020');
+        ParkingPage.inputStartingDate().setValue('14/32/2020');
         ParkingPage.inputStartingTime().setValue('10:00');
         ParkingPage.radioButtonStartingAM().click();
-        ParkingPage.inputLeavingDate().setValue('14/9/2020');
+        ParkingPage.inputLeavingDate().setValue('14/33/2020');
+        ParkingPage.inputLeavingTime().setValue('11:00');
+        ParkingPage.radioButtonLeavingAM().click();
+        ParkingPage.buttonCalculate().click();
+        expect(ParkingPage.errorMessage()).toBeDisplayed();
+    });
+    it('should throw an error with no valid input in date', () => {
+        ParkingPage.comboBoxParkingLot().$(`//option[${parkingLot.VALETPARKING}]`).click();
+        ParkingPage.inputStartingDate().setValue('MM/DD/DDD');
+        ParkingPage.inputStartingTime().setValue('10:00');
+        ParkingPage.radioButtonStartingAM().click();
+        ParkingPage.inputLeavingDate().setValue('MM/DD/DD');
         ParkingPage.inputLeavingTime().setValue('11:00');
         ParkingPage.radioButtonLeavingAM().click();
         ParkingPage.buttonCalculate().click();
